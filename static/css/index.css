@@ -1,0 +1,40 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+#container {
+    display: grid;
+    grid-template-areas:
+        "header header"
+        "sidebar content"
+        "footer footer";
+    grid-template-columns: 1fr 3fr;
+    grid-gap: 5px;
+}
+
+header {
+    grid-area: header;
+    background-color: blue;
+}
+
+article {
+    grid-area: content;
+    background-color: yellow;
+    height: 800px;
+}
+
+aside {
+    grid-area: sidebar;
+    background-color: green;
+}
+
+footer {
+    grid-area: footer;
+    background-color: red;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+}
