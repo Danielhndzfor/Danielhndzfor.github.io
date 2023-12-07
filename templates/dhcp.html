@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Bienvenidos a DHCP</h2>
+    <img src="/media/dhcp.ico" alt="">
+
+    <div class="step active">
+        <p>
+            Es un servicio que puede utilizarse para asignar dinámicamente direcciones IP únicas y otra información a los sistemas cliente. Puedes asignar la dirección IP, el nombre de dominio, el nombre de host, la puerta de enlace predeterminada y el servidor DNS mediante el servicio DHCP.
+        </p>
+        <h1>Instalación y Configuración DHCP en Ubuntu</h1>
+        <p>
+            Antes de empezar debemos asegurarnos de que el sistema esté completamente actualizado y aplicaremos 3
+            comandos.
+        </p>
+        <img src="/media/paso1.png" alt="">
+    </div>
+    <div class="step">
+        
+        <h2>Paso 1 - IP Fija</h2>
+        <p>
+            Debemos asegurarnos de que el servidor tiene una IP fija, para ellos debemos editar un 
+            archivo de configuración de la red. Para ello ingresamos el siguiente comando:
+        </p>
+        <img src="/media/dhcp1.png" alt="">
+    </div>
+    <div class="step">
+        <h2>Paso 2 - En este archivo debemos escribir la siguiente configuración:</h2>
+        <img src="/media/dhcp2.png" alt="">
+        <p>
+            En esta se indica que la IP será estática, cual será la IP del equipo, su puerta de enlace y los servidores DNS 
+que usará. 
+        </p>
+    </div>
+    <div class="step">
+        <h2>Paso 3 -  Cuando se haya guardado esta configuración, debemos aplicarla mediante el siguiente 
+            comando:</h2>
+        <img src="/media/dhcp3.png" alt="">
+    </div>
+    <div class="step">
+        <p>Nos dara este mensaje</p>
+        <img src="/media/dhcp4.png" alt="">
+    </div>
+    <div class="step">
+        <h2>Paso 4 - Instalar paquete DHCP</h2>
+        <p>
+            Para instalar el paquete DHCP, ejecutaremos el siguiente comando:
+        </p>
+        <img src="/media/dhcp5.png" alt="">
+    </div>
+    <div class="step">
+        <h2>Paso 5 -Editar el archivo de configuración del servicio DHCP</h2>
+        <p>
+            Para ello utilizaremos el siguiente comando:
+        </p>
+        <img src="/media/dhcp6.png" alt="">
+    </div>
+    <div class="step">
+        <h2>Paso 6 - En dicho archivo, únicamente debemos indicar cual es la interfaz de red de nuestro servidor</h2>
+        <img src="/media/dhcp7.png" alt="">
+    </div>
+    <div class="step">
+        <h2>Paso 7 - Editamos el archivo de configuracion de DHCP</h2>
+        <p>
+            Para ello utilizaremos el siguiente comando:
+        </p>
+        <img src="/media/dhcp8.png" alt="">
+        <img src="/media/dhcp8.1.png" alt="">
+    </div>
+    <div class="step">
+        <h2>Paso 8 - Cambios en archivo de configuracion</h2>
+        <p>
+            En dicho archivo solo debemos hacer dos cosas, la primera es descomentar una la línea que dice 
+            “authoritative”, esta indica que se debe usar el servidor DHCP en la red local.
+        </p>
+        <img src="/media/dhcp9.png" alt="">
+    </div>
+    <div class="step">
+        <h2>Paso 9 - Agregamos contenido en el mismo archivo</h2>
+        <p>
+            Por último, en al final del archivo agregamos el siguiente contenido, que indica la red que se quiere usar para asignar las IP de los clientes, estableciendo la puerta de enlace, el rango de IP a usar y el servidor DNS que se usara. Además, también se podría agregar algunas IP fijas, pero este paso no se hará en esta práctica
+        </p>
+        <img src="/media/dhcp10.png" alt="">
+    </div>
+    <div class="step">
+        <h2>Paso 10 - Reiniciar el servicio DHCP</h2>
+        <p>
+            Con esto, únicamente debemos reiniciar el servicio para que se apliquen los cambios. Esto se hace mediante el siguiente comando:
+        </p>
+        <img src="/media/dhcp11.png" alt="">
+    </div>
+    
+
+    <button onclick="showPrevious()">Anterior</button>
+    <button onclick="showNext()">Siguiente</button>
+
+    <script>
+        let currentStep = 0;
+        const steps = document.querySelectorAll('.step');
+        const nextButton = document.querySelector('button');
+    
+        
+    
+        function showPrevious() {
+            if (currentStep > 0) {
+                steps[currentStep].classList.remove('active');
+                currentStep--;
+                steps[currentStep].classList.add('active');
+                updateButton();
+            }
+        }
+    
+        function showNext() {
+            if (currentStep < steps.length - 1) {
+                steps[currentStep].classList.remove('active');
+                currentStep++;
+                steps[currentStep].classList.add('active');
+                updateButton();
+            } else {
+                // If it's the last step, reset to the first step
+                steps[currentStep].classList.remove('active');
+                currentStep = 0;
+                steps[currentStep].classList.add('active');
+                updateButton();
+            }
+        }
+    
+        // Initial setup
+        updateButton();
+    </script>
+</body>
+</html>

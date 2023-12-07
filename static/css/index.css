@@ -8,7 +8,8 @@ body {
     display: grid;
     grid-template-areas:
         "header header"
-        "sidebar content"
+        "content content"
+        "section section"
         "footer footer";
     grid-template-columns: 1fr 3fr;
     grid-gap: 5px;
@@ -16,25 +17,111 @@ body {
 
 header {
     grid-area: header;
-    background-color: blue;
+    text-align: center;
+
 }
 
 article {
     grid-area: content;
-    background-color: yellow;
-    height: 800px;
+    height: 100px;
+    text-align: center;
 }
 
-aside {
-    grid-area: sidebar;
-    background-color: green;
+section {
+    grid-area: section;
+    height: 100px;
+    text-align: center;
 }
+
 
 footer {
     grid-area: footer;
-    background-color: red;
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 50px;
+    height: 40px;
+    text-align: center;
+}
+
+.btn {
+    border: 2px solid transparent; /* Añade un borde transparente por defecto */
+    color: black;
+    padding: 10px 20px; /* Ajusta el relleno según tus necesidades */
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 20px;
+    text-align: center;
+    margin: 10px; /* Simplifica el margen para mantener la consistencia */
+    box-sizing: border-box; /* Asegura que el borde no afecte el tamaño total */
+}
+
+.selected {
+    background: inherit !important;
+    color: inherit !important;
+}
+
+.inicio {
+    background-color: white;
+    border-color: #007bff; /* Define el color del borde específico */
+}
+
+.inicio:hover {
+    background: #0b7dda;
+    color: white;
+}
+
+.dns {
+    background-color: white;
+    border: 2px solid #e7e7e7;
+}
+
+.dns:hover {
+    background: #ddd;
+    color: white;
+}
+
+.dhcp {
+    background-color: white;
+    border: 2px solid #04AA6D;
+}
+
+.dhcp:hover {
+    background-color: #46a049;
+    color: white;
+}
+
+.ftp {
+    background-color: white;
+    border: 2px solid #ff9800;
+}
+
+.ftp:hover {
+    background: #e68a00;
+    color: white;
+}
+
+.web {
+    background-color: white;
+    border: 2px solid #f44336;
+}
+
+.web:hover {
+    background: #da190b;
+    color: white;
+}
+
+.correo {
+    background-color: white;
+    border: 2px solid #555555;
+}
+
+.correo:hover {
+    background: #555555;
+    color: white;
+}
+
+.carousel-inner>.item>img,
+.carousel-inner>.item>a>img {
+    width: 60%;
+    margin: auto;
 }

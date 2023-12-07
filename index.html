@@ -5,28 +5,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="static/css/index.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Inicio</title>
 </head>
 
 <body>
-    
+
     <div id="container">
-        <header><h2>UBUNTU</h2></header>
-        <aside>
-            <h2>menu</h2>
-            <ul>
-                <li><a href="#">DNS</a><img src="media/dns.ico" alt=""></li>
-                <li><a href="#">DHCP</a></li>
-                <li><a href="#">FTP</a></li>
-                <li><a href="#">WEB (HTTP)</a></li>
-                <li><a href="#">CORREO (SMTP E IMAP)</a></li>
-            </ul>
-        </aside>
+        <header>
+            <h2>UBUNTU</h2>
+        </header>
+
         <article>
-            <h2>tutorial</h2>
+            <button type="button" class="btn inicio selected" onclick="showContent('Inicio', this)">INICIO</button>
+            <button type="button" class="btn dns" onclick="showContent('templates/dns.html', this)">DNS</button>
+            <button type="button" class="btn dhcp" onclick="showContent('templates/dhcp.html', this)">DHCP</button>
+            <button type="button" class="btn ftp" onclick="showContent('templates/ftp.html', this)">FTP</button>
+            <button type="button" class="btn web" onclick="showContent('templates/web.html', this)">WEB</button>
+            <button type="button" class="btn correo" onclick="showContent('templates/correo.html', this)">CORREO</button>
         </article>
-        <footer><h2>footer</h2></footer>
         
+        <section id="contentSection">
+            <h2>Contenido Inicio</h2>
+            <p>Este es el contenido de la sección de Inicio.</p>
+        </section>
+
+        <footer>
+            <p>COPYRIGHT | 2023 Daniel For</p>
+        </footer>
+
     </div>
+
+    <script>
+        // Llamada inicial al cargar la página
+        $(document).ready(function() {
+            showContent('Inicio', $('.inicio'));
+        });
+
+        function showContent(content, button) {
+            var section = $('#contentSection');
+            var pageTitle = 'INICIO';
+            
+            if (content !== 'Inicio') {
+                // Cargar contenido desde un archivo externo
+                section.load(content, function() {
+                    // Obtener el texto del botón como título después de cargar el contenido
+                    pageTitle = $(button).text() || pageTitle;
+                    // Cambiar el título de la página
+                    document.title = pageTitle;
+                });
+            } else {
+                // Contenido especial para "Inicio" en la misma página
+                section.html('<h2>' + content + '</h2><p>Este es el contenido de la sección de Inicio.</p>');
+                // Cambiar el título de la página
+                document.title = pageTitle;
+            }
+            
+            // Remover la clase "selected" de todos los botones
+            $('.btn').removeClass('selected');
+            
+            // Agregar la clase "selected" al botón presionado
+            if (button) {
+                $(button).addClass('selected');
+            }
+        }
+    </script>
+
 </body>
+
 </html>
+
