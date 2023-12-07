@@ -4,164 +4,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/tutoriales.css">
     <title>DNS</title>
-    <style>
-        .step {
-            display: none;
-        }
 
-        .step.active {
-            display: block;
-        }
-    </style>
 </head>
 
 <body>
-    <h2>Bienvenidos al DNS</h2>
-    <img src="/media/dns.ico" alt="">
-    
-    <div class="step active">
-        <p>
-            Es un sistema de nombres que toma nombres de dominio alfanuméricos y
-            los convierte en direcciones IP numéricas. Esencialmente, los
-            servidores de DNS actúan como traductores.
-        </p>
-        <h1>Instalación y Configuración DNS en Ubuntu</h1>
-        <p>
-            Antes de empezar debemos asegurarnos de que el sistema esté completamente actualizado y aplicaremos 3
-            comandos.
-        </p>
-        <img src="/media/paso1.png" alt="">
-    </div>
-    <div class="step">
-        
-        <h2>Paso 1 - Instalar paquete DNS</h2>
-        <p>
-            Para instalar el paquete DNS, ejecutaremos el siguiente comando:
-        </p>
-        <img src="/media/paso2.png" alt="">
-    </div>
-    <div class="step">
-        <p>
-            Nos pedirá confirmación para instalar el paquete, le daremos a Y y enter.
-        </p>
-        <img src="/media/paquete.png" alt="">
-    </div>
-    <div class="step">
-        <h2>Paso 3 - Instalar las utilidades de DNS</h2>
-        <p>
-            Para instalar las utilidades de DNS, ejecutaremos el siguiente comando:
-        </p>
-        <img src="/media/paso3.png" alt="">
-    </div>
-    <div class="step">
-        <h2>Paso 4 - Configuracion de NameServer</h2>
-        <p>
-            Para ello editaremos el archivo /etc/bind/named.conf.options con su editor favorito.
-        </p>
-        <img src="/media/paso4.png" alt="">
-        <p>
-            Agregaremos este bloque t mientras utilizamos el dns de google.
-        </p>
-        <img src="/media/paso4.1.png" alt="">
-    </div>
-    <div class="step">
-        <p>
-            Se deberia de ver de esta forma.
-        </p>
-        <img src="/media/paso4.2.png" alt="">
-    </div>
-    <div class="step">
-        <p>
-            Una vez hecho esto crearemos una zona. Para eso debemos crear una carpeta en la cual esas zonas serán guardadas.
-        </p>
-        <img src="/media/paso4.3.png" alt="">
-        <p>
-            Ahora bien, atención a los siguientes pasos. Vamos a crear un archivo donde guardaremos nuestros registros DNS:
-        </p>
-        <img src="/media/paso4.4.png" alt="">
-    </div>
-    <div class="step">
-        <p>
-            El archivo que se abrirá estará vacío; nosotros tenemos que crear algo como este ejemplo:
-        </p>
-        <img src="/media/paso4.5.png" alt="">
-    </div>
-    <div class="step">
-        <p>
-            Ahora, lo primero que debemos modificar de este archivo es el SOA y lo que pondremos ahí es el FQDN o el nombre completo de nuestro host, que debería llamarse ns1.midominio.com.
-        </p>
-        <img src="/media/paso4.6.png" alt="">
-        <p>
-            Hecho esto, borramos los registros que aparecen como @ IN NS y creamos los nuestros. ¿Cómo? Muy fácil! Primero, nos especificaremos a nosotros mismos como NS. Para eso, en el archivo pondremos lo siguiente:
-        </p>
-        <img src="/media/paso4.7.png" alt="">
-        <p>No olvides el punto (.) al final.</p>
-    </div>
-    <div class="step">
-        <p>
-            Una vez hecho esto, vamos a crear registros A donde indiquemos qué dirección IP es ns1.midominio.com, quedando de la siguiente manera:
-        </p>
-        <img src="/media/paso4.8.png" alt="">
-        <p>
-            Esa dirección IP de arriba deberá reemplazarse por la dirección IP de tu Cloud Server.
-        </p>
-    </div>
-    <div class="step">
-        <p>
-            Nuestro resultado final de la zona de DNS debería quedar algo así:
-        </p>
-        <img src="/media/paso4.9.png" alt="" style="width: 500px; height: auto;">
-    </div>
-    <div class="step">
-        <h2>Paso 5 - Reiniciamos el servicio para guardar cambios</h2>
-        <p>
-            Para ello ejecutaremos el siguiente comando:
-        </p>
-        <img src="/media/paso5.png" alt="">
-    </div>
-    
+    <div class="container">
+        <h2>Bienvenidos al DNS</h2>
+        <img src="/media/dns.ico" alt="">
 
-    <button onclick="showPrevious()">Anterior</button>
-    <button onclick="showNext()">Siguiente</button>
+        <div class="step active">
+            <p>
+                Es un sistema de nombres que toma nombres de dominio alfanuméricos y
+                los convierte en direcciones IP numéricas. Esencialmente, los
+                servidores de DNS actúan como traductores.
+            </p>
+            <h1>Instalación y Configuración DNS en Ubuntu</h1>
+            <p>
+                Antes de empezar debemos asegurarnos de que el sistema esté completamente actualizado y aplicaremos 3
+                comandos.
+            </p>
+            <img src="/media/paso1.png" alt="">
+        </div>
+        <div class="step">
 
-    <script>
-        let currentStep = 0;
-        const steps = document.querySelectorAll('.step');
-        const nextButton = document.querySelector('button');
-    
-        
-    
-        function showPrevious() {
-            if (currentStep > 0) {
-                steps[currentStep].classList.remove('active');
-                currentStep--;
-                steps[currentStep].classList.add('active');
-                updateButton();
-            }
-        }
-    
-        function showNext() {
-            if (currentStep < steps.length - 1) {
-                steps[currentStep].classList.remove('active');
-                currentStep++;
-                steps[currentStep].classList.add('active');
-                updateButton();
-            } else {
-                // If it's the last step, reset to the first step
-                steps[currentStep].classList.remove('active');
-                currentStep = 0;
-                steps[currentStep].classList.add('active');
-                updateButton();
-            }
-        }
-    
-        // Initial setup
-        updateButton();
-    </script>
-    
-    
+            <h2>Paso 1 - Instalar paquete DNS</h2>
+            <p>
+                Para instalar el paquete DNS, ejecutaremos el siguiente comando:
+            </p>
+            <img src="/media/paso2.png" alt="">
+        </div>
+        <div class="step">
+            <p>
+                Nos pedirá confirmación para instalar el paquete, le daremos a Y y enter.
+            </p>
+            <img src="/media/paquete.png" alt="">
+        </div>
+        <div class="step">
+            <h2>Paso 3 - Instalar las utilidades de DNS</h2>
+            <p>
+                Para instalar las utilidades de DNS, ejecutaremos el siguiente comando:
+            </p>
+            <img src="/media/paso3.png" alt="">
+        </div>
+        <div class="step">
+            <h2>Paso 4 - Configuracion de NameServer</h2>
+            <p>
+                Para ello editaremos el archivo /etc/bind/named.conf.options con su editor favorito.
+            </p>
+            <img src="/media/paso4.png" alt="">
+            <p>
+                Agregaremos este bloque t mientras utilizamos el dns de google.
+            </p>
+            <img src="/media/paso4.1.png" alt="">
+        </div>
+        <div class="step">
+            <p>
+                Se deberia de ver de esta forma.
+            </p>
+            <img src="/media/paso4.2.png" alt="">
+        </div>
+        <div class="step">
+            <p>
+                Una vez hecho esto crearemos una zona. Para eso debemos crear una carpeta en la cual esas zonas serán
+                guardadas.
+            </p>
+            <img src="/media/paso4.3.png" alt="">
+            <p>
+                Ahora bien, atención a los siguientes pasos. Vamos a crear un archivo donde guardaremos nuestros
+                registros DNS:
+            </p>
+            <img src="/media/paso4.4.png" alt="">
+        </div>
+        <div class="step">
+            <p>
+                El archivo que se abrirá estará vacío; nosotros tenemos que crear algo como este ejemplo:
+            </p>
+            <img src="/media/paso4.5.png" alt="">
+        </div>
+        <div class="step">
+            <p>
+                Ahora, lo primero que debemos modificar de este archivo es el SOA y lo que pondremos ahí es el FQDN o el
+                nombre completo de nuestro host, que debería llamarse ns1.midominio.com.
+            </p>
+            <img src="/media/paso4.6.png" alt="">
+            <p>
+                Hecho esto, borramos los registros que aparecen como @ IN NS y creamos los nuestros. ¿Cómo? Muy fácil!
+                Primero, nos especificaremos a nosotros mismos como NS. Para eso, en el archivo pondremos lo siguiente:
+            </p>
+            <img src="/media/paso4.7.png" alt="">
+            <p>No olvides el punto (.) al final.</p>
+        </div>
+        <div class="step">
+            <p>
+                Una vez hecho esto, vamos a crear registros A donde indiquemos qué dirección IP es ns1.midominio.com,
+                quedando de la siguiente manera:
+            </p>
+            <img src="/media/paso4.8.png" alt="">
+            <p>
+                Esa dirección IP de arriba deberá reemplazarse por la dirección IP de tu Cloud Server.
+            </p>
+        </div>
+        <div class="step">
+            <p>
+                Nuestro resultado final de la zona de DNS debería quedar algo así:
+            </p>
+            <img src="/media/paso4.9.png" alt="" style="width: 500px; height: auto;">
+        </div>
+        <div class="step">
+            <h2>Paso 5 - Reiniciamos el servicio para guardar cambios</h2>
+            <p>
+                Para ello ejecutaremos el siguiente comando:
+            </p>
+            <img src="/media/paso5.png" alt="">
+        </div>
+    </div>
 </body>
 
 </html>
-

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/tutoriales.css">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <div class="container">
+        <h2>Bienvenidos a CORREO (SMTP)</h2>
+        <img src="/media/SMTP.ico" alt="">
+
+        <div class="step">
+            <h1>Instalación y Configuración SMTP en Ubuntu</h1>
+            <p>
+                Antes de empezar debemos asegurarnos de que el sistema esté completamente actualizado y aplicaremos 3
+                comandos.
+            </p>
+            <img src="/media/paso1.png" alt="">
+        </div>
+
+        <div class="step">
+            <h2>Paso 1 - Instalamos el paquete postfix</h2>
+            <p>
+                Posteriormente, instalamos el primer servicio que necesitamos, que en este caso es postfix. Para ello
+                usamos el comando:
+            </p>
+            <img src="/media/correo1.png" alt="" style="width: 500px; height: auto;">
+        </div>
+
+        <div class="step">
+            <h2>Paso 2 - Seleccionamos "Sitio de Internet"</h2>
+            <p>
+                Al momento de instalarlo nos pedirá realizar una configuración. Primero nos pedirá seleccionar el tipo
+                de configuración de correo. Que en este caso será “Sitio de Internet”.
+            </p>
+            <img src="/media/correo2.png" alt="">
+        </div>
+
+        <div class="step">
+            <h2>Paso 3 - Ingresamos el dominio del servicio del correo</h2>
+            <p>
+                Deberá ser el mismo que el dominio asignado en el DNS, que en mi caso es “red.lan”
+            </p>
+            <img src="/media/correo3.png" alt="">
+        </div>
+
+        <div class="step">
+            <h2>Paso 4 - Realizamos cambios en el archivo de configuracion de postfix</h2>
+            <p>
+                Por seguridad primero creamos una copia de este archivo, mediante el comando:
+            </p>
+            <img src="/media/correo4.png" alt="">
+        </div>
+
+        <div class="step">
+            <h2>Paso 5 - Accedemos al archivo </h2>
+            <p>
+                Accedemos al archivo de configuración de postfix, mediante el comando:
+            </p>
+            <img src="/media/correo5.png" alt="">
+        </div>
+
+        <div class="step">
+            <h2>Paso 6 - Modificamos tres lineas del archivo</h2>
+            <p>
+                En “myhostname” debemos colocar el nombre del dominio de nuestro servidor o algún otro nombre que apunte
+                a su IP, que en mi caso es “mail.red.lan”.
+                Después en la línea de “mydestination”, esta escrito el nombre que le asignamos al servidor al crearlo,
+                este nombre se puede borrar porque no es necesario tenerlo ahí.
+                Por último, en “mynetworks” debemos agregar la red local en la que esta el servidor, en mi caso era
+                “10.180.8.0/16”.
+            </p>
+        </div>
+
+        <div class="step">
+            <img src="/media/correo6.png" alt="">
+        </div>
+
+        <div class="step">
+            <h2>Paso 7 - Guardamos la configuracion y reiniciamos el servicio</h2>
+            <p>
+                Mediante el comando:
+            </p>
+            <img src="/media/correo7.png" alt="">
+        </div>
+
+        <div class="step">
+            <h2>Paso 8 - Instalamos la paqueteria mailutils</h2>
+            <p>
+                Una vez que configuramos postfix, instalaremos mailutils, que es la paquetería que nos permitirá enviar y recibir correos. Para ello usamos el comando:
+            </p>
+            <img src="/media/correo8.png" alt="">
+        </div>
+
+        <div class="step">
+            <h2>Paso 9 - Modificamos el archivo de configuracion de postfix</h2>
+            <p>
+                Al final de este archivo debemos agregar una nueva línea de código que diga: “home_mailbox = Maildir/”, esto es la dirección donde se guardan y administran los correos que recibirán los usuarios
+            </p>
+            <img src="/media/correo9.png" alt="">
+        </div>
+
+        <div class="step">
+            <h2>Paso 10 - Instalar la paqueteria dovecot</h2>
+            <p>
+                Posteriormente, instalamos la paquetería dovecot, que es la que nos permitirá acceder a los correos que recibamos. Para ello usamos el comando:
+            </p>
+            <img src="/media/correo10.png" alt="">
+        </div>ç
+
+        <div class="step">
+            <h2>Paso 11 - Modificamos archivos de modificacion</h2>
+            <p>
+                El primero de ellos es “10-mail.conf”. Para modificarlo debemos usar el siguiente comando:
+            </p>
+            <img src="/media/correo11.png" alt="">
+            <p>
+                En este archivo debemos modificar la línea que dice “mail_location”, para que la dirección sea “maildir:~/Maildir”
+            </p>
+            <img src="/media/correo12.png" alt="">
+        </div>
+
+        <div class="step">
+            <p>
+                Después debemos ir al archivo “10-ssl.conf”, para desactivar el uso de encriptación en la comunicación. Algo que simplificara bastante el proceso de configuración del servicio
+            </p>
+            <img src="/media/correo13.png" alt="">
+            <p>
+                En este archivo debemos cambiar la linea de “ssl = yes” por “ssl = no”, y además comentamos las dos lineas que apuntan a la dirección de los certificados ssl.
+            </p>
+            <img src="/media/correo14.png" alt="">
+        </div>
+
+        <div class="step">
+            <p>
+                Por último, debemos ir al archivo “10-auth.conf”, para ello usamos el siguiente comando:
+            </p>
+            <img src="/media/correo15.png" alt="">
+            <p>
+                Aquí únicamente cambiar la opción de “yes” por “no” en la línea que dice “disable_plaintext_auth”
+            </p>
+            <img src="/media/correo16.png" alt="">
+        </div>
+
+        <div class="step">
+            <h2>Paso 12 - Reiniciamos el servicio</h2>
+            <p>
+                Para que los cambios se apliquen, reiniciamos el servicio mediante el comando:
+            </p>
+            <img src="/media/correo17.png" alt="">
+        </div>
+
+        <div class="step">
+            <h2>Thunderbird</h2>
+            <p>
+                Utilizaremos este servicio de software de terceros para poder acceder a los correos que recibamos en nuestro servidor. Para ello, primero debemos descargarlo e instalarlo en nuestra computadora.
+                A la hora configurarlo, al igual que en Windows Server, debemos asegurarnos de que los puertos IMAP y SMTP sean los correctos y que el nombre de nuestro servidor sea el mismo que asignamos en el DNS.
+            </p>
+            <img src="/media/correo18.png" alt="">
+        </div>
+
+        <div class="step">
+            <p>
+                Para probar el envío de correo, inicie sesión con dos cuentas de mi servidor “paco2” y “usuario2”. Entre dos usuarios realizare él envió de un correo electrónico.
+                *Únicamente se prueba desde la maquina local, porque el software no se puede usar a nivel de servidor mediante consola
+            </p>
+            <img src="/media/correo19.png" alt="">
+            <img src="/media/correo20.png" alt="">
+        </div>
+
+    </div>
+
+</body>
+
+</html>

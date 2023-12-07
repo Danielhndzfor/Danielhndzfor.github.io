@@ -12,35 +12,35 @@ body {
         "section section"
         "footer footer";
     grid-template-columns: 1fr 3fr;
+    grid-template-rows: auto auto auto auto;  /* Ajuste de las alturas automáticas */
     grid-gap: 5px;
+    min-height: 100vh;  /* Garantiza que el contenedor ocupe al menos la altura completa de la ventana */
 }
 
 header {
     grid-area: header;
     text-align: center;
-
 }
 
 article {
     grid-area: content;
-    height: 100px;
     text-align: center;
 }
 
 section {
     grid-area: section;
-    height: 100px;
     text-align: center;
 }
 
-
 footer {
     grid-area: footer;
-    position: absolute;
+    text-align: center;
+    height: 40px;
+    position: sticky;  /* Permite que el pie de página se mantenga en la parte inferior de la ventana si el contenido no es lo suficientemente largo */
     bottom: 0;
     width: 100%;
-    height: 40px;
-    text-align: center;
+    background-color: black;
+    color: white;
 }
 
 .btn {
@@ -120,8 +120,22 @@ footer {
     color: white;
 }
 
-.carousel-inner>.item>img,
-.carousel-inner>.item>a>img {
-    width: 60%;
-    margin: auto;
+#contentSection {
+    text-align: center;
+    margin-top: 40px;
+}
+
+#contentSection h2 {
+    color: #007BFF;
+}
+
+#contentSection p {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+#contentSection img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 20px;
 }

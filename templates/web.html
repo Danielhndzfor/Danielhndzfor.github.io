@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/tutoriales.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Bienvenidos a WEB (HTTP)</h2>
+        <img src="/media/http.ico" alt="">
+
+        <div class="step active">
+            <p>
+                El servidor HTTP Apache es el más usado del mundo. Ofrece muchas características potentes, entre las que
+                se incluyen módulos que se cargan de forma dinámica, una sólida compatibilidad con medios y amplia
+                integración con otras herramientas de software populares.
+            </p>
+            <h1>Instalación y Configuración WEB en Ubuntu</h1>
+            <p>
+                Antes de empezar debemos asegurarnos de que el sistema esté completamente actualizado y aplicaremos 3
+                comandos.
+            </p>
+            <img src="/media/paso1.png" alt="">
+        </div>
+
+        <div class="step">
+            <h2>Paso 1 - Instalar el paquete Apache2</h2>
+            <p>
+                Nos permitirá activar el servicio HTTP en nuestro servidor de Ubuntu. Para descargarlo usamos el
+                siguiente comando:
+            </p>
+            <img src="/media/web1.png" alt="" style="width: 500px; height: 250px;">
+        </div>
+
+        <div class="step">
+            <h2>Paso 2 - Modificamos las reglas del firewall</h2>
+            <img src="/media/web2.png" alt="">
+        </div>
+
+        <div class="step">
+            <h2>Paso 3 - Verificamos el status de apache</h2>
+            <p>
+                $ sudo systemctl status apache2
+            </p>
+            <img src="/media/web3.png" alt="">
+        </div>
+
+        <div class="step">
+            <h2>Para iniciar el servicio utilizamos</h2>
+            <img src="/media/web4.png" alt="">
+        </div>
+
+        <div class="step">
+            <h2>Paso 4 - Editamos el archivo por defecto</h2>
+            <p>
+                Este servicio tendrá un archivo por defecto que tendrá un código para una página web preestablecido,
+                este archivo esta en la ubicación: /var/www/html . Este archivo se deberá editar para poder agregar el
+                diseño que se desee para la página web
+            </p>
+            <img src="/media/web5.png" alt="">
+        </div>
+
+        <div class="step">
+            <h2>Paso 5 - Editamos el archivo por defecto</h2>
+            <p>
+                Entramos con el sigueinte comando:
+            </p>
+            <img src="/media/web6.png" alt="">
+        </div>
+
+        <div class="step">
+            <h2>Paso 6 - Agregamos todo el codigo</h2>
+            <p>
+                Después ahí agregamos todo nuestro código del sitio web. Para poder verlo demos acceder a la URL que
+                identifica a nuestro servidor en nuestro servicio DNS.
+            </p>
+            <img src="/media/web7.png" alt="">
+        </div>
+    </div>
+</body>
+
+</html>

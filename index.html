@@ -5,9 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="static/css/index.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Inicio</title>
 </head>
 
@@ -19,17 +16,23 @@
         </header>
 
         <article>
-            <button type="button" class="btn inicio selected" onclick="showContent('Inicio', this)">INICIO</button>
-            <button type="button" class="btn dns" onclick="showContent('templates/dns.html', this)">DNS</button>
-            <button type="button" class="btn dhcp" onclick="showContent('templates/dhcp.html', this)">DHCP</button>
-            <button type="button" class="btn ftp" onclick="showContent('templates/ftp.html', this)">FTP</button>
-            <button type="button" class="btn web" onclick="showContent('templates/web.html', this)">WEB</button>
-            <button type="button" class="btn correo" onclick="showContent('templates/correo.html', this)">CORREO</button>
+            <button type="button" class="btn inicio selected" onclick="showContent('templates/inicio.html')">INICIO</button>
+            <button type="button" class="btn dns" onclick="showContent('templates/dns.html')">DNS</button>
+            <button type="button" class="btn dhcp" onclick="showContent('templates/dhcp.html')">DHCP</button>
+            <button type="button" class="btn ftp" onclick="showContent('templates/ftp.html')">FTP</button>
+            <button type="button" class="btn web" onclick="showContent('templates/web.html')">WEB</button>
+            <button type="button" class="btn correo" onclick="showContent('templates/correo.html')">CORREO</button>
         </article>
         
         <section id="contentSection">
-            <h2>Contenido Inicio</h2>
-            <p>Este es el contenido de la sección de Inicio.</p>
+            <h2>B I E N V E N I D O S</h2>
+            <p>Bienvenido a la mejor pagina de tutoriales para instalar servicios en ubuntu como:</p>
+            <p>DNS</p>
+            <p>DHCP</p>
+            <p>FTP</p>
+            <p>WEB</p>
+            <p>CORREO</p>
+            <img src="/media/logo.png" alt="">
         </section>
 
         <footer>
@@ -39,36 +42,52 @@
     </div>
 
     <script>
+        // Almacena el contenido cargado para cada sección
+        const contentCache = {};
+
         // Llamada inicial al cargar la página
-        $(document).ready(function() {
-            showContent('Inicio', $('.inicio'));
+        document.addEventListener('DOMContentLoaded', function() {
+            showContent('Inicio');
         });
 
-        function showContent(content, button) {
-            var section = $('#contentSection');
+        function showContent(content) {
+            var section = document.getElementById('contentSection');
             var pageTitle = 'INICIO';
             
-            if (content !== 'Inicio') {
-                // Cargar contenido desde un archivo externo
-                section.load(content, function() {
-                    // Obtener el texto del botón como título después de cargar el contenido
-                    pageTitle = $(button).text() || pageTitle;
-                    // Cambiar el título de la página
-                    document.title = pageTitle;
-                });
+            // Verifica si el contenido ya está en caché
+            if (contentCache[content]) {
+                section.innerHTML = contentCache[content];
             } else {
-                // Contenido especial para "Inicio" en la misma página
-                section.html('<h2>' + content + '</h2><p>Este es el contenido de la sección de Inicio.</p>');
-                // Cambiar el título de la página
-                document.title = pageTitle;
+                // Cargar contenido desde un archivo externo
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', content, true);
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        // Almacena el contenido en caché
+                        contentCache[content] = xhr.responseText;
+                        // Muestra el contenido
+                        section.innerHTML = xhr.responseText;
+                    }
+                };
+                xhr.send();
             }
+
+            // Obtener el texto del botón como título
+            pageTitle = document.querySelector('.btn.selected').innerText || pageTitle;
+
+            // Cambiar el título de la página
+            document.title = pageTitle;
             
             // Remover la clase "selected" de todos los botones
-            $('.btn').removeClass('selected');
-            
-            // Agregar la clase "selected" al botón presionado
-            if (button) {
-                $(button).addClass('selected');
+            var btns = document.querySelectorAll('.btn');
+            btns.forEach(function(btn) {
+                btn.classList.remove('selected');
+            });
+
+            // Agregar la clase "selected" al botón correspondiente
+            var selectedBtn = document.querySelector(`.btn:contains('${pageTitle}')`);
+            if (selectedBtn) {
+                selectedBtn.classList.add('selected');
             }
         }
     </script>
@@ -76,4 +95,6 @@
 </body>
 
 </html>
+
+
 

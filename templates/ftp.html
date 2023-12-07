@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/tutoriales.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Bienvenidos a FTP</h2>
+        <img src="/media/ftp.ico" alt="">
+
+        <div class="step active">
+            <p>
+                Los servidores FTP son útiles para almacenar archivos de tu computadora y permitir que otros usuarios
+                accedan a ellos. Para poder configurar un servidor FTP en tu computadora, debes tener un servidor FTP
+                anfitrión al cual conectarte. También se recomienda actualizar el software de Ubuntu a la versión más
+                reciente.
+            </p>
+            <h1>Instalación y Configuración FTP en Ubuntu</h1>
+            <p>
+                Antes de empezar debemos asegurarnos de que el sistema esté completamente actualizado y aplicaremos 3
+                comandos.
+            </p>
+            <img src="/media/paso1.png" alt="">
+        </div>
+
+        <div class="step">
+
+            <h2>Paso 1 - Instalamos el paquete vsftpd</h2>
+            <p>
+                Posteriormente instalamos el paquete “vsftpd”, el cual es paquete que se encarga de todo el servicio FTP
+                del
+                servidor. Para ello usamos el siguiente comando:
+            </p>
+            <img src="/media/ftp1.png" alt="" style="width: 500px; height: auto;">
+        </div>
+
+        <div class="step">
+            <h2>Paso 2 - Creamos una copia del archivo de configuracion</h2>
+            <p>
+                Creamos una copia del archivo de configuración original del servicio FTP, para ello usamos el siguiente
+                comando:
+            </p>
+            <img src="/media/ftp2.png" alt="">
+        </div>
+
+        <div class="step">
+            <h2>Paso 3 - Agregamos nuevas reglas de Firewall</h2>
+            <p>
+                Agregamos nuevas reglas de Firewall para permitir el acceso al servicio FTP, para ello usamos el
+                siguiente
+                comando:
+            </p>
+            <img src="/media/ftp3.png" alt="">
+        </div>
+
+        <div class="step">
+            <h2>Paso 4 - Aplicamos las reglas</h2>
+            <p>
+                Los puertos 20 y 21 se usan para el trafico FTP, el rango de puerto 40000:50000 se usan como la reserva
+                de
+                rangos pasivos y el puerto 990 se usa cuando se activa el TLS.
+            </p>
+            <img src="/media/ftp4.png" alt="" style="width: 500px; height: auto;">
+        </div>
+
+        <div class="step">
+            <h2>Paso 5 - Creamos la carpeta de acceso al servicio</h2>
+            <p>
+                Posteriormente debemos crear una carpeta la cual usaremos para acceder al servicio FTP También, a esta
+                carpeta debemos asignarle permisos para que los usuarios permitidos puedan acceder a ella. Para esto, y
+                como
+                solo darle permisos a un usuario, usamos el siguiente comando para cambiar los permisos de la carpeta:
+            </p>
+            <img src="/media/ftp5.png" alt="" style="width: 500px; height: auto;">
+        </div>
+
+        <div class="step">
+            <h2>Paso 6 - Editamos el archivo de configuración</h2>
+            <p>
+                Editamos el archivo de configuración del servicio FTP, para ello usamos el siguiente comando:
+            </p>
+            <img src="/media/ftp6.png" alt="" style="width: 400px; height: 280px;">
+        </div>
+
+        <div class="step">
+            <h2>Paso 7 - Descomentamos las siguientes lineas</h2>
+            <img src="/media/ftp9.png" alt="">
+        </div>
+
+        <div class="step">
+            <p>Quedaria asi</p>
+            <img src="/media/ftp10.png" alt="">
+        </div>
+
+        <div class="step">
+            <h2>Paso 8 - Agregamos las siguiente lineas</h2>
+            <img src="/media/ftp11.png" alt="">
+        </div>
+
+        <div class="step">
+            <p>
+                Las primera dos se encargan de asignar los usuarios que pueden acceder al servicio y a que dirección
+                deben
+                acceder cuando usen este servicio. Las ultimas dos asignan cuales serán los rangos de puertos que
+                usurarán
+                para los puertos pasivos
+            </p>
+            <img src="/media/ftp12.png" alt="">
+        </div>
+
+        <div class="step">
+            <h2>Paso 9 - Creamos la lista de usuarios autorizados</h2>
+            <p>
+                Para ello usamos el siguiente comando:
+            </p>
+            <img src="/media/ftp13.png" alt="">
+        </div>
+
+        <div class="step">
+            <h2>Paso 10 - Agregamos los usuarios</h2>
+            <p>
+                Agregamos los usuarios que pueden acceder al servicio FTP, para ello usamos el siguiente comando:
+            </p>
+            <img src="/media/ftp14.png" alt="">
+        </div>
+
+        <div class="step">
+            <h2>Con todo esto listo, ya podemos acceder al servicio FTP desde cualquier cliente.</h2>
+        </div>
+    </div>
+
+</body>
+
+</html>
